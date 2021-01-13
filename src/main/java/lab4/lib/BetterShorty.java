@@ -12,14 +12,14 @@ public abstract class BetterShorty extends Shorty implements Controller, SleepyH
         System.out.println(this.toString() + " входит в " + currentLocation.getName());
     }
     @Override
-    public void sleep() {
+    public void sleep() throws WrongSleepCondition{
         if (!asleep)
             asleep = true;
         else
             throw new WrongSleepCondition(this.toString());
     }
     @Override
-    public void wake() {
+    public void wake() throws WrongSleepCondition{
         if (asleep)
             asleep = false;
         else
@@ -35,13 +35,3 @@ public abstract class BetterShorty extends Shorty implements Controller, SleepyH
     }
 }
 
-class WrongSleepCondition extends RuntimeException {
-    private String name;
-    WrongSleepCondition(String name) {
-        this.name = name;
-    }
-    @Override
-    public String toString() {
-        return name + " уже спит/бодрствует";
-    }
-}

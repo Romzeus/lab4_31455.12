@@ -22,7 +22,7 @@ public class Dunno extends BetterShorty{
         return false;
     }
     @Override
-    public void sleep(){
+    public void sleep() throws WrongSleepCondition{
         super.sleep();
         System.out.println(this.toString() + " растянулся на дне отсека, подложив под голову вместо подушки свой собственный кулак");
     }

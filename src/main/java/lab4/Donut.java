@@ -2,7 +2,7 @@ package lab4;
 
 import lab4.lib.*;
 
-public class Donut extends BetterShorty implements FallGuy, Thinker{
+public class Donut extends BetterShorty implements FallGuy{
     private boolean condition = false;
     private int sadness;
     public Donut(String name){
@@ -37,10 +37,6 @@ public class Donut extends BetterShorty implements FallGuy, Thinker{
         return false;
     }
     @Override
-    public void think(Thought thought) {
-        System.out.println(this.toString() + " подумал, что " + thought.getThought());
-    }
-    @Override
     public void sleep() {
         System.out.println(this.toString() + " устроился поудобнее на мягкой пластмассе");
     }
@@ -48,8 +44,8 @@ public class Donut extends BetterShorty implements FallGuy, Thinker{
     public void wake() {
         System.out.println(toString() + " поднялся");
     }
-    public void decide(Thought thought) {
-        System.out.println(toString() + " решил " + thought.getThought());
+    public void decide() {
+        System.out.println(toString() + " решил " + "выбраться из ракеты");
     }
     public void hear(Object object) {
         System.out.print(toString() + " прислушивается к " + object.toString());
@@ -60,5 +56,11 @@ public class Donut extends BetterShorty implements FallGuy, Thinker{
             if (((Rocket) object).isFlightMode())
                 System.out.print(" и слышит мерный шум заработавшего ракетного двигателя");
         System.out.println();
+    }
+    public void reject() {
+        System.out.println(this.toString() + " не хочет лететь");
+    }
+    public void misinterpret(Object object) {
+        System.out.println(this.toString() + " перепутал" + object.toString());
     }
 }

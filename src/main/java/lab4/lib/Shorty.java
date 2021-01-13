@@ -2,7 +2,7 @@ package lab4.lib;
 
 public abstract class Shorty{
     private final String name;
-    Shorty(String name){
+    public Shorty(String name){
         this.name = name;
     }
     public abstract void see(Object A);
