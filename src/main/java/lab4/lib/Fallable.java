@@ -1,6 +1,6 @@
 package lab4.lib;
 
-public interface FallGuy {
+public interface Fallable {
     void fall();
     boolean isFallen();
 }

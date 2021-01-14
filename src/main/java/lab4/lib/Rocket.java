@@ -59,7 +59,10 @@ public class Rocket {
     }
     @Override
     public String toString(){
-        return "Ракета";
+        if (isFlightMode())
+            return "Летящая ракета";
+        else
+            return "Ракета";
     }
     public boolean isFlightMode() {
         return flightMode;

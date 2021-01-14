@@ -41,12 +41,8 @@ public class Main {
             dunno.interact(button);
             donut.see(button.getControlledObject());
         }
-        try {
-            dunno.sleep();
-            donut.sleep();
-        } catch(WrongSleepCondition sleepCondition) {
-            sleepCondition.toString();
-        }
+        dunno.sleep();
+        donut.sleep();
         donut.reject();
         donut.hear(dunno);
         donut.wake();

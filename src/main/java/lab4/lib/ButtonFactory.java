@@ -5,7 +5,7 @@ public class ButtonFactory {
         return ButtonFactory.getButton("пищевой продукт", FurnitureType.FRIDGE);
     }
     public static Button getButton(String foodName, FurnitureType furnitureType){
-        Food food = new Food(foodName);
+        Container.Food food = new Container.Food(foodName);
         Furniture furniture = new Container(furnitureType, food);
         Button button = new Button(furniture);
         return button;

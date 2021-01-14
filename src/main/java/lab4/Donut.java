@@ -2,7 +2,7 @@ package lab4;
 
 import lab4.lib.*;
 
-public class Donut extends BetterShorty implements FallGuy{
+public class Donut extends BetterShorty implements Fallable{
     private boolean condition = false;
     private int sadness;
     public Donut(String name){
@@ -23,6 +23,17 @@ public class Donut extends BetterShorty implements FallGuy{
         condition = true;
         System.out.println(this.toString() + " падает");
     }
+    public void standUp() {
+        condition = false;
+        System.out.println(toString() + " встал");
+    }
+    @Override
+    public void move(Location location) {
+        if (isFallen())
+            throw new WrongCondition(toString());
+        else
+            super.move(location);
+    }
     public void changeSadness(int change){
         sadness += change;
     }
@@ -33,32 +44,41 @@ public class Donut extends BetterShorty implements FallGuy{
     @Override
     public boolean equals(Object object){
         if (object instanceof Donut)
-            return (object.toString().equals(this.toString())) && (((Donut)object).isFallen() == this.isFallen());
+            return (object.toString().equals(this.toString())) && (((Donut)object).isFallen() == this.isFallen()) && (((Donut)object).isAsleep() == this.isAsleep());
         return false;
     }
     @Override
     public void sleep() {
+        super.sleep();
         System.out.println(this.toString() + " устроился поудобнее на мягкой пластмассе");
     }
     @Override
     public void wake() {
+        super.wake();
+        condition = false;
         System.out.println(toString() + " поднялся");
     }
     public void decide() {
-        System.out.println(toString() + " решил " + "выбраться из ракеты");
+        if (sadness > 2)
+            System.out.println(toString() + " решил выбраться из ракеты");
+        else
+            System.out.println(toString() + " решил остаться в ракете");
     }
     public void hear(Object object) {
+        String sound;
         System.out.print(toString() + " прислушивается к " + object.toString());
-        if (object instanceof BetterShorty)
-            if (((BetterShorty) object).isAsleep())
-                System.out.print(" и слышит мерное похрапывание");
-        else if (object instanceof Rocket)
-            if (((Rocket) object).isFlightMode())
-                System.out.print(" и слышит мерный шум заработавшего ракетного двигателя");
-        System.out.println();
+        try {
+            sound = Sound.getSound(object);
+        } catch(NoSoundException noSound) {
+            sound = "ничего";
+        }
+        System.out.println(" и слышит " + sound);
     }
     public void reject() {
-        System.out.println(this.toString() + " не хочет лететь");
+        if (sadness > 2)
+            System.out.println(this.toString() + " не хочет лететь");
+        else
+            System.out.println(this.toString() + " все еще хочет лететь");
     }
     public void misinterpret(Object object) {
         System.out.println(this.toString() + " перепутал" + object.toString());
