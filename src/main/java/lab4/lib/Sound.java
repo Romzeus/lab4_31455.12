@@ -6,7 +6,7 @@ public class Sound {
         if (object instanceof Rocket)
             if (((Rocket) object).isFlightMode())
                 sound = "мерный шум заработавшего ракетного двигателя";
-        else if (object instanceof BetterShorty)
+        if (object instanceof BetterShorty)
             if (((BetterShorty) object).isAsleep())
                 sound = "мерное похрапывание";
         if (sound.equals(" "))
